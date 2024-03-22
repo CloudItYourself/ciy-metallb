@@ -2358,7 +2358,7 @@ spec:
           value: memberlist
         - name: METALLB_DEPLOYMENT
           value: controller
-        image: quay.io/metallb/controller:v0.14.3
+        image: ghcr.io/cloudityourself/controller:v0.14.3
         livenessProbe:
           failureThreshold: 3
           httpGet:
@@ -2446,7 +2446,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: quay.io/metallb/frr-k8s:v0.0.8
+        image: ghcr.io/cloudityourself/frr-k8s:v0.0.8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -2602,7 +2602,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: quay.io/metallb/frr-k8s:v0.0.8
+        image: ghcr.io/cloudityourself/frr-k8s:v0.0.8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -2728,7 +2728,7 @@ spec:
         - /bin/sh
         - -c
         - cp -f /frr-reloader.sh /etc/frr_reloader/
-        image: quay.io/metallb/frr-k8s:v0.0.8
+        image: ghcr.io/cloudityourself/frr-k8s:v0.0.8
         name: cp-reloader
         volumeMounts:
         - mountPath: /etc/frr_reloader
@@ -2737,7 +2737,7 @@ spec:
         - /bin/sh
         - -c
         - cp -f /frr-metrics /etc/frr_metrics/
-        image: quay.io/metallb/frr-k8s:v0.0.8
+        image: ghcr.io/cloudityourself/frr-k8s:v0.0.8
         name: cp-metrics
         volumeMounts:
         - mountPath: /etc/frr_metrics
@@ -2810,7 +2810,7 @@ spec:
           value: app=metallb,component=speaker
         - name: METALLB_ML_SECRET_KEY_PATH
           value: /etc/ml_secret_key
-        image: quay.io/metallb/speaker:v0.14.3
+        image: ghcr.io/cloudityourself/speaker:v0.14.3
         livenessProbe:
           failureThreshold: 3
           httpGet:

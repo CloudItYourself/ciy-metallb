@@ -14,7 +14,7 @@ This example assumes MetalLB was installed in the metallb-system namespace and t
 
 ```bash
 kubectl get configmap -n metallb-system -o yaml config > config.yaml
-docker run -d -v $(pwd):/var/input quay.io/metallb/configmaptocrs
+docker run -d -v $(pwd):/var/input ghcr.io/cloudityourself/configmaptocrs
 ```
 
 ## Example
@@ -105,7 +105,7 @@ kubectl run configmaptocrs -n metallb-system --restart=Never -it --rm --image ov
     "containers": [
       {
         "name": "configmaptocrs",
-        "image": "quay.io/metallb/configmaptocrs",
+        "image": "ghcr.io/cloudityourself/configmaptocrs",
         "command": [
           "/configmaptocrs",
           "-source",

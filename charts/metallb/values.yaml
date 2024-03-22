@@ -197,7 +197,7 @@ controller:
   # command: /controller
   # webhookMode: enabled
   image:
-    repository: quay.io/metallb/controller
+    repository: ghcr.io/cloudityourself/controller
     tag:
     pullPolicy:
   ## @param controller.updateStrategy.type Metallb controller deployment strategy type.
@@ -269,7 +269,7 @@ speaker:
   excludeInterfaces:
     enabled: true
   image:
-    repository: quay.io/metallb/speaker
+    repository: ghcr.io/cloudityourself/speaker
     tag:
     pullPolicy:
   ## @param speaker.updateStrategy.type Speaker daemonset strategy type

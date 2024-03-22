@@ -3,6 +3,8 @@
 package k8salloc
 
 import (
+	"os"
+
 	"go.universe.tf/metallb/internal/allocator"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -22,7 +24,14 @@ func Ports(svc *v1.Service) []allocator.Port {
 
 // SharingKey extracts the sharing key for a service.
 func SharingKey(svc *v1.Service) string {
-	return svc.Annotations["metallb.universe.tf/allow-shared-ip"]
+	// check if CIY env variable is set
+	svcAnnotation := svc.Annotations["metallb.universe.tf/allow-shared-ip"]
+	if svcAnnotation == "" {
+		if _, ok := os.LookupEnv("CIY"); ok {
+			return "ciy-shared"
+		}
+	}
+	return svcAnnotation
 }
 
 // BackendKey extracts the backend key for a service.

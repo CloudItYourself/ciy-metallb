@@ -27,7 +27,7 @@ Kubernetes: `>= 1.19.0-0`
 | controller.enabled | bool | `true` |  |
 | controller.extraContainers | list | `[]` |  |
 | controller.image.pullPolicy | string | `nil` |  |
-| controller.image.repository | string | `"quay.io/metallb/controller"` |  |
+| controller.image.repository | string | `"ghcr.io/cloudityourself/controller"` |  |
 | controller.image.tag | string | `nil` |  |
 | controller.labels | object | `{}` |  |
 | controller.livenessProbe.enabled | bool | `true` |  |
@@ -125,7 +125,7 @@ Kubernetes: `>= 1.19.0-0`
 | speaker.frr.resources | object | `{}` |  |
 | speaker.frrMetrics.resources | object | `{}` |  |
 | speaker.image.pullPolicy | string | `nil` |  |
-| speaker.image.repository | string | `"quay.io/metallb/speaker"` |  |
+| speaker.image.repository | string | `"ghcr.io/cloudityourself/speaker"` |  |
 | speaker.image.tag | string | `nil` |  |
 | speaker.labels | object | `{}` |  |
 | speaker.livenessProbe.enabled | bool | `true` |  |

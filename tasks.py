@@ -403,8 +403,8 @@ apiServer:
     binaries = ["controller", "speaker"]
     if build_images:
         build(ctx, binaries, architectures=[architecture])
-    run("kind load docker-image --name={} quay.io/metallb/controller:dev-{}".format(name, architecture), echo=True)
-    run("kind load docker-image --name={} quay.io/metallb/speaker:dev-{}".format(name, architecture), echo=True)
+    run("kind load docker-image --name={} ghcr.io/cloudityourself/controller:dev-{}".format(name, architecture), echo=True)
+    run("kind load docker-image --name={} ghcr.io/cloudityourself/speaker:dev-{}".format(name, architecture), echo=True)
 
     if with_prometheus:
         print("Deploying prometheus")
@@ -452,8 +452,8 @@ apiServer:
             with open(manifest_file) as f:
                 manifest = f.read()
             for image in binaries:
-                manifest = re.sub("image: quay.io/metallb/{}:.*".format(image),
-                            "image: quay.io/metallb/{}:dev-{}".format(image, architecture), manifest)
+                manifest = re.sub("image: ghcr.io/cloudityourself/{}:.*".format(image),
+                            "image: ghcr.io/cloudityourself/{}:dev-{}".format(image, architecture), manifest)
                 manifest = re.sub("--log-level=info", "--log-level={}".format(log_level), manifest)
             manifest.replace("--log-level=info", "--log-level=debug")
 
@@ -687,9 +687,9 @@ def bumprelease(ctx, version, previous_version):
     run("perl -pi -e 's/MetalLB .*/MetalLB v{}/g' website/content/_header.md".format(version), echo=True)
 
     # Update the manifests with the new version
-    run("perl -pi -e 's,image: quay.io/metallb/speaker:.*,image: quay.io/metallb/speaker:v{},g' config/controllers/speaker.yaml".format(version), echo=True)
-    run("perl -pi -e 's,image: quay.io/metallb/speaker:.*,image: quay.io/metallb/speaker:v{},g' config/frr/speaker-patch.yaml".format(version), echo=True)
-    run("perl -pi -e 's,image: quay.io/metallb/controller:.*,image: quay.io/metallb/controller:v{},g' config/controllers/controller.yaml".format(version), echo=True)
+    run("perl -pi -e 's,image: ghcr.io/cloudityourself/speaker:.*,image: ghcr.io/cloudityourself/speaker:v{},g' config/controllers/speaker.yaml".format(version), echo=True)
+    run("perl -pi -e 's,image: ghcr.io/cloudityourself/speaker:.*,image: ghcr.io/cloudityourself/speaker:v{},g' config/frr/speaker-patch.yaml".format(version), echo=True)
+    run("perl -pi -e 's,image: ghcr.io/cloudityourself/controller:.*,image: ghcr.io/cloudityourself/controller:v{},g' config/controllers/controller.yaml".format(version), echo=True)
 
     # Update the versions in the helm chart (version and appVersion are always the same)
     # helm chart versions follow Semantic Versioning, and thus exclude the leading 'v'

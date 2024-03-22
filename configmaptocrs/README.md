@@ -9,7 +9,7 @@ convert the configmap into the new CRDs.
 
 ### Procedure
 
-The conversion tool is shipped as a container image under `quay.io/metallb/configmaptocrs`.
+The conversion tool is shipped as a container image under `ghcr.io/cloudityourself/configmaptocrs`.
 
 In order to use the tool, the following container must be run with the ConfigMap config.yaml mapped 
 into the /var/input folder. On success it will generate a resources.yaml file containing the new MetalLB CRD based config.
@@ -17,7 +17,7 @@ This example assumes MetalLB was installed in the metallb-system namespace and t
 
 ```bash
 kubectl get configmap -n metallb-system -o yaml config > config.yaml
-docker run -d -v $(pwd):/var/input quay.io/metallb/configmaptocrs
+docker run -d -v $(pwd):/var/input ghcr.io/cloudityourself/configmaptocrs
 ```
 
 ## Example
@@ -191,7 +191,7 @@ kubectl run configmaptocrs -n metallb-system --restart=Never -it --rm --image ov
     "containers": [
       {
         "name": "configmaptocrs",
-        "image": "quay.io/metallb/configmaptocrs",
+        "image": "ghcr.io/cloudityourself/configmaptocrs",
         "command": [
           "/configmaptocrs",
           "-source",

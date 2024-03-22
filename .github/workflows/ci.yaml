@@ -121,7 +121,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          tags: quay.io/metallb/${{ matrix.image }}:dev-amd64
+          tags: ghcr.io/cloudityourself/${{ matrix.image }}:dev-amd64
           file: ${{matrix.image}}/Dockerfile
           outputs: type=docker,dest=/tmp/${{ matrix.image }}.tar
           cache-from: type=gha
@@ -314,8 +314,8 @@ jobs:
         run: |
           cd ${GITHUB_WORKSPACE}/metallboperator
           ./hack/kind-multi-node-cluster-without-registry.sh
-          kind load docker-image quay.io/metallb/speaker:dev-amd64
-          kind load docker-image quay.io/metallb/controller:dev-amd64
+          kind load docker-image ghcr.io/cloudityourself/speaker:dev-amd64
+          kind load docker-image ghcr.io/cloudityourself/controller:dev-amd64
           export KUBECONFIG=${HOME}/.kube/config
 
       - name: Deploy Metal LB Operator
