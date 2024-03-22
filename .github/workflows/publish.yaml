@@ -71,7 +71,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            quay.io/metallb/${{ matrix.image }}
+            ghcr.io/cloudityourself/metallb/${{ matrix.image }}
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
