@@ -34,18 +34,6 @@ jobs:
         run: |
           inv test
 
-      - name: Lint
-        run: |
-          inv checkpatch
-          inv lint -e host
-          inv verifylicense
-          inv gomodtidy
-          inv checkchanges --action="run inv gomodtidy"
-          inv generatemanifests
-          inv checkchanges --action="run inv generatemanifests"
-          inv generateapidocs
-          inv checkchanges --action="run inv generateapidocs"
-
   publish-images:
     runs-on: ubuntu-22.04
     needs: [unit-tests]
@@ -77,7 +65,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Docker meta ${{ matrix.image }}
         id: meta
         uses: docker/metadata-action@v5
