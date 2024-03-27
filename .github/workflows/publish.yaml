@@ -93,12 +93,6 @@ jobs:
             GIT_BRANCH: ${{ github.ref_name }}
             GIT_COMMIT: ${{ github.sha }}
 
-      - name: Cosign sign tags
-        run: cosign sign ${TAGS}
-        env:
-          TAGS: ${{ steps.meta.outputs.tags }}@${{ steps.build-and-push.outputs.digest }}
-          COSIGN_EXPERIMENTAL: 1
-
   release-charts:
     needs: [publish-images]
     runs-on: ubuntu-22.04
