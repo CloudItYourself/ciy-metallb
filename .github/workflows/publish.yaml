@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   unit-tests:
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,11 +35,8 @@ jobs:
           inv test
 
   publish-images:
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-22.04
     needs: [unit-tests]
-    permissions:
-      contents: read
-      id-token: write # needed for signing the images with GitHub OIDC Token
     strategy:
       fail-fast: true
       matrix:
@@ -104,7 +101,7 @@ jobs:
 
   release-charts:
     needs: [publish-images]
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
