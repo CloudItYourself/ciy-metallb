@@ -6,9 +6,6 @@ on:
       - v*
     tags:
       - v*
-      
-permissions:
-  packages: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
