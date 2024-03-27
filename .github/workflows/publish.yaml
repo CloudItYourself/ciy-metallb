@@ -62,19 +62,19 @@ jobs:
       - name: Setup docker buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log into Quay
-        uses: docker/login-action@v3
+      - name: Log in to gitlab hub
+        uses: docker/login-action@v1
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: registry.gitlab.com/ronen48/ciy
+          username: ronen
+          password: glpat-MUekjoxQDubT9QoHyuEx
 
       - name: Docker meta ${{ matrix.image }}
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/cloudityourself/metallb/${{ matrix.image }}
+            registry.gitlab.com/ronen48/ciy/metallb/${{ matrix.image }}
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
